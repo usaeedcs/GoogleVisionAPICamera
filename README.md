@@ -6,7 +6,7 @@ This web application performs AI-based analysis on photos captured by an ESP32-C
 ESP32-CAM can connect to wifi, so it displays the photos on a web server. We just created a separate NodeJS webserver that extracts those photos and puts them on its customized web application. Then using Google Vision API it analyzes the photos.
 
 # Steps:
-There were two sections for the setup of this project. The first section was hardware. I used C++ and the Arduino IDE to set up the ESP32-CAM. "Random Nerd Tutorial" provided with simple C++ source code which I modified to suit my needs, you can also follow the steps of setting up your camera using this link: https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/.
+There were two sections for the setup of this project. The first section was hardware. I used C++ and the Arduino IDE to set up the ESP32-CAM. "Random Nerd Tutorial" provided with simple C++ source code which I modified to suit the needs of the project, you can also follow the steps of setting up your camera using this link: https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/.
 
 The second setup was setting up the web server with Node.js
 
@@ -35,7 +35,8 @@ The server relies on several Node.js packages, including:
 The server requires a `credentials.json` file to authenticate with the Google Cloud Vision API, which you can get by creating an account. Additionally, the ESP32-CAM's IP address needs to be configured in the `server.js` file, which is provided when you upload your C++ code to the camera using the Arduino IDE.
 
 ## Usage
-To run the server, ensure that Node.js is installed, install the required dependencies using `npm install`, and then start the server using `node server.js`.
+To run the server:
+1. Copy the repository and download dependencies using `/npm install'
+2. Run the server
 
-## Contributing
-Contributions to this project are welcome. Feel free to submit issues or pull requests.
+<img width="1109" alt="Final" src="https://github.com/usaeedcs/GoogleVisionAPICamera/assets/85361194/4cd54b7d-a843-4362-a2a1-d2a7dc548819">
