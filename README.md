@@ -36,7 +36,7 @@ The server requires a `credentials.json` file to authenticate with the Google Cl
 
 ## Usage
 To run the server:
-1. Copy the repository and download dependencies using `/npm install'
+1. Copy the repository and download dependencies using `/npm install`
 2. Run the server
 
 <img width="1109" alt="Final" src="https://github.com/usaeedcs/GoogleVisionAPICamera/assets/85361194/4cd54b7d-a843-4362-a2a1-d2a7dc548819">
