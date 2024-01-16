@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div id="container">
+    <h2>ESP32 AI Security Camera</h2>
+    <h3>Powered with ESP32CAM and Google Vision AI API</h3>
+    <p>Caution: Photos captured may take a while to render and there might be a delay</p>
+    <div class="button-container">
+      <button onclick="capturePhoto()">CAPTURE PHOTO</button>
+      <button onclick="objectScan()">OBJECT SCAN</button>
+      <button onclick="emotionScan()">EMOTION SCAN</button>
+    </div>
+  </div>
+  <div class="container">
+    <div id="photoContainer" class="photo-container">
+      <img src="photo.jpg" id="photo">
+      <div class="loading"></div>
+    </div>
+    <div id="analysisResults" class="analysis-results">
+      <h3>Results</h3>
+      <p id="analysisData">No Data</p>
+    </div>
+  </div>
+  <script>
+    function capturePhoto() {
+      showLoading();
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', "/capture", true);
+      xhr.send();
+      xhr.onload = function() {
+        refreshPhoto();
+      };
+    }
+
+    function refreshPhoto() {
+      var img = document.getElementById("photo");
+      img.src = "photo.jpg?" + new Date().getTime();
+      hideLoading();
+    }
+
+    function objectScan() {
+      fetch('/objectscan')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          document.getElementById('analysisData').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function emotionScan() {
+      fetch('/emotionscan')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          document.getElementById('analysisData').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function showLoading() {
+      var loadingDiv = document.querySelector('.loading');
+      var image = document.getElementById("photo")
+      image.style["visibility"]="hidden";
+      loadingDiv.style.display = 'block';
+    }
+
+    function hideLoading() {
+      var loadingDiv = document.querySelector('.loading');
+      var image = document.getElementById("photo");
+      loadingDiv.style.display = 'none';
+      image.style["visibility"]="visible";
+    }
+  </script>
+</body>
+</html>
