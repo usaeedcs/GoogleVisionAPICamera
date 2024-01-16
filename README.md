@@ -1,11 +1,24 @@
+# Google Vision Security Camera
+This is a security camera powered by AI that utilizes ESP32-CAM, Node.js, and Google Vision AI API.
+
+This web application performs AI-based analysis on photos captured by an ESP32-CAM device. Users can instruct the connected ESP32-CAM to take photos through the web app. Once the images are received, Google's Vision AI API is employed for tasks such as recognizing objects and emotions in the photos.
+
+ESP32-CAM can connect to wifi, so it displays the photos on a web server. We just created a separate NodeJS webserver that extracts those photos and puts them on its customized web application. Then using Google Vision API it analyzes the photos.
+
+# Steps:
+There were two sections for the setup of this project. The first section was hardware. I used C++ and the Arduino IDE to set up the ESP32-CAM. "Random Nerd Tutorial" provided with simple C++ source code which I modified to suit my needs, you can also follow the steps of setting up your camera using this link: https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/.
+
+The second setup was setting up the web server with Node.js
+
 # Camera Web Server
 
-This repository contains the code for a web server that interacts with an ESP32-CAM module to capture and process images. The server is built using Node.js and Express, and it utilizes the Google Cloud Vision API for image analysis.
+The web server folder contains the code for the web server that interacts with an ESP32-CAM module to capture and process images. The server is built using Node.js and Express, and it utilizes the Google Cloud Vision API for image analysis.
 
 ## File Description
 The main file in this repository is `server.js`, which serves as the entry point for the web server. It includes routes for capturing images from the ESP32-CAM, performing object detection, and analyzing emotions in the captured images.
 
-## Dependencies
+## Requirements:
+Arduino IDE, ESP32-CAM, NodeJS, Google Vision AI API
 The server relies on several Node.js packages, including:
 - Express: for handling HTTP requests and serving static files
 - Axios: for making HTTP requests to the ESP32-CAM
@@ -19,7 +32,7 @@ The server relies on several Node.js packages, including:
 3. **Emotion Analysis**: The `/emotionscan` endpoint performs face detection and emotion analysis on the captured image, returning the likelihood of various emotions for each detected face.
 
 ## Configuration
-The server requires a `credentials.json` file to authenticate with the Google Cloud Vision API. Additionally, the ESP32-CAM's IP address needs to be configured in the `server.js` file.
+The server requires a `credentials.json` file to authenticate with the Google Cloud Vision API, which you can get by creating an account. Additionally, the ESP32-CAM's IP address needs to be configured in the `server.js` file, which is provided when you upload your C++ code to the camera using the Arduino IDE.
 
 ## Usage
 To run the server, ensure that Node.js is installed, install the required dependencies using `npm install`, and then start the server using `node server.js`.
